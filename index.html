@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Budget Tracker Enhanced</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <button id="dark-mode-toggle">Toggle Dark Mode</button>
+  <h1>Budget Tracker</h1>
+
+  <form id="expense-form">
+    <input type="text" id="category" placeholder="Category" required>
+    <input type="number" id="amount" placeholder="Amount" required>
+    <input type="date" id="date" required>
+    <button type="submit">Add Expense</button>
+  </form>
+
+  <div>
+    <h3>Filter by Date</h3>
+    From: <input type="date" id="filter-start"> To: <input type="date" id="filter-end">
+    <button id="apply-filter">Apply</button>
+    <button id="download-csv">Export CSV</button>
+  </div>
+
+  <div>
+    <h3>Search Expenses</h3>
+    <input type="text" id="search-input" placeholder="Type to search...">
+  </div>
+
+  <h2>Expense List</h2>
+  <ul id="expense-list"></ul>
+
+  <h2>Total Spent: ₹<span id="total">0</span></h2>
+  <canvas id="expense-chart"></canvas>
+
+  <div id="summary">
+    <h2>Monthly Summary</h2>
+    <p id="month-total">Total This Month: ₹0</p>
+    <p id="top-category">Top Category: N/A</p>
+  </div>
+
+  <div id="toast">Action completed!</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

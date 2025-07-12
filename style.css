@@ -1,0 +1,170 @@
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f0f2f5;
+  color: #333;
+  padding: 20px;
+}
+
+h1, h2, h3 {
+  margin-bottom: 10px;
+}
+
+form {
+  background: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+form input, form button {
+  padding: 10px;
+  margin: 5px 0;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+form button {
+  background: #4CAF50;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+form button:hover {
+  background: #45a049;
+}
+
+#filter-start, #filter-end, #search-input {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+button#apply-filter, button#download-csv {
+  padding: 10px 20px;
+  background: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+button#apply-filter:hover, button#download-csv:hover {
+  background: #1976D2;
+}
+
+ul#expense-list {
+  list-style: none;
+  margin-top: 20px;
+}
+
+ul#expense-list li {
+  background: white;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+ul#expense-list button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+ul#expense-list button:nth-child(2) {
+  background: #f44336;
+  color: white;
+}
+
+ul#expense-list button:nth-child(3) {
+  background: #FFC107;
+  color: white;
+}
+
+canvas#expense-chart {
+  margin-top: 30px;
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#summary {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin-top: 20px;
+}
+
+#toast {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #333;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: none;
+  z-index: 999;
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  margin-right: 8px;
+  border-radius: 8px;
+  color: white;
+  font-size: 12px;
+}
+
+body.dark-mode {
+  background: #121212;
+  color: #f0f0f0;
+}
+
+body.dark-mode form,
+body.dark-mode #summary,
+body.dark-mode ul#expense-list li,
+body.dark-mode canvas#expense-chart {
+  background: #1e1e1e;
+  color: #f0f0f0;
+}
+
+body.dark-mode button {
+  background: #333;
+  color: white;
+}
+
+body.dark-mode form button:hover,
+body.dark-mode button#apply-filter:hover {
+  background: #555;
+}
+
+@media (min-width: 768px) {
+  form input, form button {
+    width: auto;
+    display: inline-block;
+  }
+
+  #filter-start, #filter-end, #search-input {
+    width: auto;
+  }
+}
