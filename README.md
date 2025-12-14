@@ -1,6 +1,11 @@
 # Budget Tracker Pro 💰
 
-A full-stack, human-centered expense tracking application with beautiful UI/UX.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Node.js Version](https://img.shields.io/badge/node-%3E%3D16.0.0-brightgreen)](https://nodejs.org/)
+[![Code Style: Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
+[![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://github.com/JosephJonathanFernandes/budget-tracker-basic/graphs/commit-activity)
+
+A full-stack, human-centered expense tracking application designed for simplicity and elegance. Built with Node.js, Express, and modern vanilla JavaScript.
 
 ## Features
 
