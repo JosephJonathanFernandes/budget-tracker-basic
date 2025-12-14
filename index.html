@@ -1,49 +1,309 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Budget Tracker Enhanced</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <button id="dark-mode-toggle">Toggle Dark Mode</button>
-  <h1>Budget Tracker</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Track your expenses intelligently with Budget Tracker Pro"
+    />
+    <title>💰 Budget Tracker Pro - Smart Expense Management</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Animated Background -->
+    <div class="background-animation">
+      <div class="circle circle-1"></div>
+      <div class="circle circle-2"></div>
+      <div class="circle circle-3"></div>
+    </div>
 
-  <form id="expense-form">
-    <input type="text" id="category" placeholder="Category" required>
-    <input type="number" id="amount" placeholder="Amount" required>
-    <input type="date" id="date" required>
-    <button type="submit">Add Expense</button>
-  </form>
+    <!-- Welcome Overlay -->
+    <div id="welcome-overlay" class="welcome-overlay">
+      <div class="welcome-content">
+        <h2>👋 Welcome to Budget Tracker Pro!</h2>
+        <p>Your intelligent companion for managing expenses</p>
+        <div class="welcome-features">
+          <div class="feature-item">
+            <span class="feature-icon">📊</span>
+            <h3>Visual Insights</h3>
+            <p>See your spending patterns at a glance</p>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">🎯</span>
+            <h3>Smart Tracking</h3>
+            <p>Categorize and filter with ease</p>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">🔒</span>
+            <h3>Secure & Private</h3>
+            <p>Your data stays on your device</p>
+          </div>
+        </div>
+        <button id="start-tracking" class="btn btn-primary btn-large">
+          Start Tracking 🚀
+        </button>
+      </div>
+    </div>
 
-  <div>
-    <h3>Filter by Date</h3>
-    From: <input type="date" id="filter-start"> To: <input type="date" id="filter-end">
-    <button id="apply-filter">Apply</button>
-    <button id="download-csv">Export CSV</button>
-  </div>
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">
+            <span class="logo-icon" role="img" aria-label="Money bag">💰</span>
+            <h1>Budget<span class="highlight">Tracker</span></h1>
+          </div>
+          <div class="header-actions">
+            <button
+              id="help-btn"
+              class="icon-btn"
+              aria-label="Help"
+              title="Need help?"
+            >
+              <span>❓</span>
+            </button>
+            <button
+              id="dark-mode-toggle"
+              class="theme-toggle"
+              aria-label="Toggle dark mode"
+              title="Switch theme"
+            >
+              <span class="sun">☀️</span>
+              <span class="moon">🌙</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
 
-  <div>
-    <h3>Search Expenses</h3>
-    <input type="text" id="search-input" placeholder="Type to search...">
-  </div>
+    <!-- Main Content -->
+    <main class="container">
+      <!-- Dashboard Cards -->
+      <div class="dashboard-grid">
+        <div class="stat-card stat-card-1">
+          <div class="stat-icon">💵</div>
+          <div class="stat-content">
+            <h3>Total Spent</h3>
+            <p class="stat-value">₹<span id="total">0</span></p>
+          </div>
+        </div>
 
-  <h2>Expense List</h2>
-  <ul id="expense-list"></ul>
+        <div class="stat-card stat-card-2">
+          <div class="stat-icon">📅</div>
+          <div class="stat-content">
+            <h3>This Month</h3>
+            <p class="stat-value" id="month-total-simple">₹0</p>
+          </div>
+        </div>
 
-  <h2>Total Spent: ₹<span id="total">0</span></h2>
-  <canvas id="expense-chart"></canvas>
+        <div class="stat-card stat-card-3">
+          <div class="stat-icon">📊</div>
+          <div class="stat-content">
+            <h3>Total Expenses</h3>
+            <p class="stat-value" id="expense-count">0</p>
+          </div>
+        </div>
 
-  <div id="summary">
-    <h2>Monthly Summary</h2>
-    <p id="month-total">Total This Month: ₹0</p>
-    <p id="top-category">Top Category: N/A</p>
-  </div>
+        <div class="stat-card stat-card-4">
+          <div class="stat-icon">🏆</div>
+          <div class="stat-content">
+            <h3>Top Category</h3>
+            <p class="stat-value-small" id="top-category-simple">N/A</p>
+          </div>
+        </div>
+      </div>
 
-  <div id="toast">Action completed!</div>
+      <!-- Add Expense Form -->
+      <div class="section-card form-section">
+        <div class="section-header">
+          <h2>✨ Add New Expense</h2>
+          <button
+            class="help-tooltip"
+            data-tooltip="Quickly track your spending by adding expenses here"
+          >
+            <span>ℹ️</span>
+          </button>
+        </div>
+        <form id="expense-form" novalidate>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="category"
+                >Category <span class="required">*</span></label
+              >
+              <select id="category" required aria-required="true">
+                <option value="">Select Category</option>
+                <option value="Food">🍔 Food & Dining</option>
+                <option value="Travel">✈️ Travel & Transport</option>
+                <option value="Bills">💡 Bills & Utilities</option>
+                <option value="Shopping">🛍️ Shopping</option>
+                <option value="Entertainment">🎮 Entertainment</option>
+                <option value="Health">🏥 Health & Fitness</option>
+                <option value="Education">📚 Education</option>
+                <option value="Other">📦 Other</option>
+              </select>
+              <span class="field-hint">Choose what you spent on</span>
+              <span class="error-message" id="category-error"></span>
+            </div>
+            <div class="form-group">
+              <label for="amount"
+                >Amount (₹) <span class="required">*</span></label
+              >
+              <input
+                type="number"
+                id="amount"
+                placeholder="0.00"
+                step="0.01"
+                min="0.01"
+                required
+                aria-required="true"
+                aria-describedby="amount-hint"
+              />
+              <span class="field-hint" id="amount-hint"
+                >Enter the amount spent</span
+              >
+              <span class="error-message" id="amount-error"></span>
+            </div>
+            <div class="form-group">
+              <label for="date">Date <span class="required">*</span></label>
+              <input
+                type="date"
+                id="date"
+                required
+                aria-required="true"
+                aria-describedby="date-hint"
+              />
+              <span class="field-hint" id="date-hint">When did you spend?</span>
+              <span class="error-message" id="date-error"></span>
+            </div>
+            <div class="form-group">
+              <label for="notes">Notes (Optional)</label>
+              <input
+                type="text"
+                id="notes"
+                placeholder="Add a description..."
+                maxlength="100"
+                aria-describedby="notes-hint"
+              />
+              <span class="field-hint" id="notes-hint">Brief description</span>
+            </div>
+            <div class="form-group form-actions">
+              <button type="submit" class="btn btn-primary" id="submit-btn">
+                <span>Add Expense</span>
+                <span class="btn-icon">➕</span>
+              </button>
+              <button type="button" class="btn btn-ghost" id="clear-form">
+                <span>Clear</span>
+                <span>🗑️</span>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="app.js"></script>
-</body>
+      <!-- Filters and Actions -->
+      <div class="section-card">
+        <div class="section-header">
+          <h2>🔍 Filter & Export</h2>
+        </div>
+        <div class="filter-controls">
+          <div class="search-box">
+            <span class="search-icon">🔎</span>
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Search expenses..."
+            />
+          </div>
+          <div class="date-filters">
+            <input type="date" id="filter-start" class="date-input" />
+            <span class="date-separator">to</span>
+            <input type="date" id="filter-end" class="date-input" />
+            <button id="apply-filter" class="btn btn-secondary">
+              Apply Filter
+            </button>
+          </div>
+          <button id="download-csv" class="btn btn-export">
+            <span>Export CSV</span>
+            <span>📥</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Chart and Summary Grid -->
+      <div class="chart-summary-grid">
+        <div class="section-card chart-section">
+          <div class="section-header">
+            <h2>📊 Expense Breakdown</h2>
+          </div>
+          <div class="chart-container">
+            <canvas id="expense-chart"></canvas>
+          </div>
+        </div>
+
+        <div class="section-card summary-section">
+          <div class="section-header">
+            <h2>📈 Monthly Insights</h2>
+          </div>
+          <div class="summary-content">
+            <div class="summary-item">
+              <div class="summary-icon">💰</div>
+              <div class="summary-details">
+                <p class="summary-label">Total This Month</p>
+                <p class="summary-value" id="month-total">₹0</p>
+              </div>
+            </div>
+            <div class="summary-item">
+              <div class="summary-icon">🎯</div>
+              <div class="summary-details">
+                <p class="summary-label">Top Spending Category</p>
+                <p class="summary-value" id="top-category">N/A</p>
+              </div>
+            </div>
+            <div class="summary-item">
+              <div class="summary-icon">📊</div>
+              <div class="summary-details">
+                <p class="summary-label">Average per Day</p>
+                <p class="summary-value" id="avg-per-day">₹0</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Expense List -->
+      <div class="section-card">
+        <div class="section-header">
+          <h2>📝 Recent Expenses</h2>
+          <span class="expense-badge" id="filtered-count">0 items</span>
+        </div>
+        <ul id="expense-list" class="expense-list"></ul>
+        <div id="empty-state" class="empty-state">
+          <div class="empty-icon">📭</div>
+          <h3>No expenses yet</h3>
+          <p>Start tracking by adding your first expense above!</p>
+        </div>
+      </div>
+    </main>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+      <span class="toast-icon">✓</span>
+      <span class="toast-message">Action completed!</span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Made with ❤️ | Budget Tracker Pro © 2025</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+  </body>
 </html>
